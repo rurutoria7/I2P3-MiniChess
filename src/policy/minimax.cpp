@@ -25,7 +25,10 @@ Move Minimax::get_move(State *state, int depth) {
 }
 
 int minimax(State *state, int depth, int maximizingPlayer){
-    if (depth == 0 || state->game_state != 3) {
+    if (!state->legal_actions.size())
+        state->get_legal_actions();
+
+    if (depth == 0 || state->legal_actions.size() == 0) {
         return state->evaluate();
     }
     if (maximizingPlayer) {

@@ -12,23 +12,21 @@
  * @return int 
  */
 int pointTable[] = {
-        0, 1, 3, 4, 6, 10, 1000
+//        0, 1, 3, 4, 6, 10, 1000
+0, 1, 3, 3, 5, 9, 1000
 };
 
 int State::evaluate() {
     int score = 0;
     for (int i = 0; i < BOARD_H; i++) {
         for (int j = 0; j < BOARD_W; j++) {
-            if (this->board.board[0][i][j]) {
-                score += pointTable[this->board.board[0][i][j]];
+            if (this->board.board[this->player][i][j]) {
+                score += pointTable[this->board.board[0][i][j]]*3;
             }
-            if (this->board.board[1][i][j]) {
-                score -= pointTable[this->board.board[1][i][j]];
+            if (this->board.board[!(this->player)][i][j]) {
+                score -= pointTable[this->board.board[1][i][j]]*2;
             }
         }
-    }
-    if (this->player == 1) {
-        return -score;
     }
     return score;
 }
